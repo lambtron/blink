@@ -54,7 +54,7 @@
         this.current++;
         if(this.current >= this.words.length) {
           this.current = 0;
-          // stopSpritz();
+          this.stop();
         }
       }.bind(this), this.msPerWord));
     };
