@@ -1,5 +1,6 @@
 (function() {
-  getText('', function(err, res) {
+  var url = 'https://www.google.com';
+  getText(url, function(err, res) {
     var fetch = JSON.parse(res);
     var el = document.querySelector('#blink');
     blinkify(fetch.text, el);
@@ -7,7 +8,7 @@
 
   function blinkify(text, el) {
     this.el = el;
-    this.wpm = 500; // TODO: change later
+    this.wpm = 100; // TODO: change later
     this.msPerWord = 60000 / this.wpm;
     this.current = 0;
     this.running = false;
@@ -77,7 +78,10 @@
 
     this._show = function(i) {
       var p = _getPivot(this.words[i]);
-      (this.el).innerHTML = this.words[i];
+      var html = '<span>' + this.words[i].substr(0, p - 1) + '</span>';
+      html += '<span class="pivot">' + this.words[i].substr(p - 1, 1) + '</span>';
+      html += '<span>' + this.words[i].substr(p, this.words[i].length - p) + '</span>';
+      (this.el).innerHTML = html;
     };
 
     /**
@@ -117,6 +121,8 @@
       };
       return i;
     };
+
+    this.start();
   }
 
   /**
