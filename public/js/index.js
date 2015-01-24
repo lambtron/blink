@@ -1,5 +1,5 @@
 (function() {
-  getText('http://www.google.com', function(err, res) {
+  getText('', function(err, res) {
     var fetch = JSON.parse(res);
     var el = document.querySelector('#blink');
     blinkify(fetch.text, el);
@@ -127,7 +127,7 @@
 
   function getText(url, cb) {
     var fetchtext = 'https://fetchtext-api.herokuapp.com/fetch/?url=' + url;
-    getURL(fetchtext, function(err, res) {
+    get(fetchtext, function(err, res) {
       if (err) cb(err, null);
       cb(null, res);
     });
@@ -140,7 +140,7 @@
    * @param {Function} cb
    */
 
-  function getURL(url, cb) {
+  function get(url, cb) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -148,6 +148,14 @@
     }
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+  }
+
+  /**
+   * Get URL from input form.
+   */
+
+  function getUrl() {
+    // get from input form
   }
 
 })();
