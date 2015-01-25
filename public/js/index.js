@@ -11,16 +11,18 @@
 
   function submit() {
     input.className += " hide";
+    input.onblur = function () {};
     getText(input.value, function(err, res) {
       var fetch = JSON.parse(res);
       var el = document.querySelector('#blink');
+      if (fetch.text.length === 0) el.innerHTML('Error parsing text');
       blinkify(fetch.text, el);
     });
   }
 
   function blinkify(text, el) {
     this.el = el;
-    this.wpm = 100; // TODO: change later
+    this.wpm = 500; // TODO: change later
     this.msPerWord = 60000 / this.wpm;
     this.current = 0;
     this.running = false;
@@ -33,7 +35,6 @@
     var prePunc = [',', ':', '-', '('];
     var postPunc = ['.', '!', '?', ':', ';', ')'];
     for (var i = 0; i < words.length; i++) {
-      if (~words[i].indexOf('.')) tempWords[t] = words[i].replace('.', '&#8226;');
       for (var j = 0; j < prePunc.length; j++) {
         if (~words[i].indexOf(prePunc[j])) {
           tempWords.splice(t+1, 0, words[i]);
@@ -90,9 +91,9 @@
 
     this._show = function(i) {
       var p = _getPivot(this.words[i]);
-      var html = '<span>' + this.words[i].substr(0, p - 1) + '</span>';
-      html += '<span class="pivot">' + this.words[i].substr(p - 1, 1) + '</span>';
-      html += '<span>' + this.words[i].substr(p, this.words[i].length - p) + '</span>';
+      var html = '<span class="left"><span class="pre-pivot">' + this.words[i].substr(0, p - 1) + '</span></span>';
+      html += '<span class="right"><span class="pivot">' + this.words[i].substr(p - 1, 1) + '</span>';
+      html += '<span class="post-pivot">' + this.words[i].substr(p, this.words[i].length - p) + '</span></span>';
       (this.el).innerHTML = html;
     };
 
@@ -166,14 +167,6 @@
     }
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-  }
-
-  /**
-   * Get URL from input form.
-   */
-
-  function getUrl() {
-    // get from input form
   }
 
 })();

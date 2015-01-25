@@ -1,6 +1,5 @@
 
 #input {
-  margin-top: 300px;
   color: #A7A7A7;
   background-color: transparent;
   border: 0px;
@@ -12,7 +11,34 @@ textarea:focus, input:focus {
   outline: 0;
 }
 
-span.pivot {
+span.left {
+  display: inline-block;
   position: absolute;
-  right:500px;
+  left: 0px;
+  height: 100%;
+  width: 300px;
+}
+
+span.right {
+  display: inline-block;
+  height: 100%;
+  margin-left: 185px;
+  width: 300px;
+}
+
+span.pivot {
+  color: red;
+}
+
+span.pre-pivot {
+  float: right;
+}
+
+span.post-pivot {
+  /*float: left;*/
+}
+
+#blink {
+  height: 200px;
+  font-size: 10em;
 }
