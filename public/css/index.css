@@ -26,13 +26,13 @@ span.left {
   position: absolute;
   left: 0px;
   height: 100%;
-  width: 300px;
+  width: 550px;
 }
 
 span.right {
   display: inline-block;
   height: 100%;
-  margin-left: 215px;
+  margin-left: 465px;
   width: 300px;
 }
 
