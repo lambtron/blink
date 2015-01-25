@@ -26,13 +26,13 @@ span.left {
   position: absolute;
   left: 0px;
   height: 100%;
-  width: 550px;
+  width: 650px;
 }
 
 span.right {
   display: inline-block;
   height: 100%;
-  margin-left: 465px;
+  margin-left: 565px;
   width: 300px;
 }
 
@@ -50,5 +50,13 @@ span.post-pivot {
 
 #blink {
   height: 200px;
-  font-size: 10em;
+  font-size: 12em;
+}
+
+#title {
+  position: absolute;
+  top: 0px;
+  left: 650px;
+  color: #e7e7e7;
+  font-size: 4em;
 }

@@ -6,17 +6,21 @@
   };
   input.onkeyup = function(e) {
     e.which = e.which || e.keyCode;
-    if (e.which === 13) submit();
+    if (e.which === 13) {
+      input.className += " hide";
+      input.onblur = function () {};
+      submit();
+    }
   };
 
   function submit() {
-    input.className += " hide";
-    input.onblur = function () {};
     getText(input.value, function(err, res) {
       var fetch = JSON.parse(res);
-      var el = document.querySelector('#blink');
-      if (fetch.text.length === 0) el.innerHTML('Error parsing text');
-      blinkify(fetch.text, el);
+      var blink = document.querySelector('#blink');
+      var title = document.querySelector('#title');
+      if (fetch.text.length === 0) blink.innerHTML('Error parsing text');
+      blinkify(fetch.text, blink);
+      title.innerHTML = fetch.title;
     });
   }
 
