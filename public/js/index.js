@@ -1,10 +1,22 @@
 (function() {
-  var url = 'https://www.google.com';
-  getText(url, function(err, res) {
-    var fetch = JSON.parse(res);
-    var el = document.querySelector('#blink');
-    blinkify(fetch.text, el);
-  });
+  var input = document.getElementById('input');
+  input.focus();
+  input.onblur = function() {
+    this.focus();
+  };
+  input.onkeyup = function(e) {
+    e.which = e.which || e.keyCode;
+    if (e.which === 13) submit();
+  };
+
+  function submit() {
+    input.className += " hide";
+    getText(input.value, function(err, res) {
+      var fetch = JSON.parse(res);
+      var el = document.querySelector('#blink');
+      blinkify(fetch.text, el);
+    });
+  }
 
   function blinkify(text, el) {
     this.el = el;

@@ -1,7 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  Hello, world.
-  <div id="blink"></div>
+  <link rel="stylesheet" href="/css/index.css">
+  <div class="row">
+    <input id="input" type="text" />
+  </div>
+  <div class="row">
+    <div id="blink"></div>
+  </div>
   <script src="/js/index.js"></script>
 {% endblock %}
