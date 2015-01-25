@@ -1,4 +1,14 @@
 
+.container {
+  padding: 100px;
+  width: 600px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 #input {
   color: #A7A7A7;
   background-color: transparent;
@@ -22,7 +32,7 @@ span.left {
 span.right {
   display: inline-block;
   height: 100%;
-  margin-left: 185px;
+  margin-left: 215px;
   width: 300px;
 }
 
