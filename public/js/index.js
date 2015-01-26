@@ -71,6 +71,12 @@
     }
     this.words = tempWords.slice(0);
 
+    el.addEventListener('click', function() {
+      console.log(this.running);
+      if (this.running) return this.stop();
+      this.start();
+    }.bind(this));
+
     /**
      * Start blinking.
      */
