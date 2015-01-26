@@ -1,4 +1,6 @@
+
 (function() {
+
   var input = document.getElementById('input');
   input.focus();
   input.onblur = function() {
@@ -18,14 +20,18 @@
       var fetch = JSON.parse(res);
       var blink = document.querySelector('#blink');
       var title = document.querySelector('#title');
+      var duration = document.querySelector('#duration');
+      var progress = document.querySelector('#progress');
       if (fetch.text.length === 0) blink.innerHTML('Error parsing text');
-      blinkify(fetch.text, blink);
+      var blink = new blinkify(fetch.text, blink, progress);
       title.innerHTML = fetch.title;
+      duration.innerHTML = Math.round(blink.words.length / blink.wpm) + ' min';
     });
   }
 
-  function blinkify(text, el) {
+  function blinkify(text, el, progress) {
     this.el = el;
+    this.progress = progress;
     this.wpm = 500; // TODO: change later
     this.msPerWord = 60000 / this.wpm;
     this.current = 0;
@@ -34,11 +40,13 @@
 
     // Preprocess.
     var words = text.trim().split(/\s+/);
-    var tempWords = words.slice(0);
+    var tempWords = [];
     var t = 0;
     var prePunc = [',', ':', '-', '('];
     var postPunc = ['.', '!', '?', ':', ';', ')'];
     for (var i = 0; i < words.length; i++) {
+      if (~words[i].indexOf('-')) words[i] = words[i].replace('-', '&#8209;');
+      tempWords.push(words[i]);
       for (var j = 0; j < prePunc.length; j++) {
         if (~words[i].indexOf(prePunc[j])) {
           tempWords.splice(t+1, 0, words[i]);
@@ -70,6 +78,7 @@
       this.timers.push(setInterval(function() {
         this._show(this.current);
         this.current++;
+        this.progress.innerHTML = Math.floor(this.current * 100 / this.words.length) + '%';
         if(this.current >= this.words.length) {
           this.current = 0;
           this.stop();
@@ -94,7 +103,7 @@
      */
 
     this._show = function(i) {
-      var p = _getPivot(this.words[i]);
+      var p = this._getPivot(this.words[i]);
       var html = '<span class="left"><span class="pre-pivot">' + this.words[i].substr(0, p - 1) + '</span></span>';
       html += '<span class="right"><span class="pivot">' + this.words[i].substr(p - 1, 1) + '</span>';
       html += '<span class="post-pivot">' + this.words[i].substr(p, this.words[i].length - p) + '</span></span>';

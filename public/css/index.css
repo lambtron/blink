@@ -61,3 +61,19 @@ span.post-pivot {
   font-size: 4em;
   width: 1000px;
 }
+
+#duration {
+  position: absolute;
+  color: #e7e7e7;
+  bottom: 0px;
+  font-size: 2em;
+  left: 200px;
+}
+
+#progress {
+  position: absolute;
+  color: #e7e7e7;
+  bottom: 0px;
+  font-size: 2em;
+  right: -1000px;
+}
