@@ -11,6 +11,8 @@
     if (e.which === 13) {
       input.className += " hide";
       input.onblur = function () {};
+      document.activeElement.blur();
+      input.blur();
       submit();
     }
   };

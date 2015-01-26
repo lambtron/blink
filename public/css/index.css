@@ -55,25 +55,25 @@ span.post-pivot {
 
 #title {
   position: absolute;
-  top: 0px;
-  left: 450px;
-  color: #e7e7e7;
-  font-size: 4em;
-  width: 1000px;
+  top: -200px;
+  left: 200px;
+  color: #d1d1d1;
+  font-size: 5em;
+  width: 1500px;
 }
 
 #duration {
   position: absolute;
-  color: #e7e7e7;
-  bottom: 0px;
-  font-size: 2em;
+  color: #d1d1d1;
+  bottom: -250px;
+  font-size: 4em;
   left: 200px;
 }
 
 #progress {
   position: absolute;
-  color: #e7e7e7;
-  bottom: 0px;
-  font-size: 2em;
-  right: -1000px;
+  color: #d1d1d1;
+  bottom: -250px;
+  font-size: 4em;
+  right: -1100px;
 }
